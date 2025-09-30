@@ -4,9 +4,13 @@ import { ModeToggle } from '@/components/ui/mode-toggle'
 import { cn } from '@/lib/utils'
 import React from 'react'
 import UseScrollTop from '../hooks/use-scroll-top';
+import { AuthButtons } from '@/components/auth-buttons';
+//import { useConvexAuth } from 'convex/react'
+//import Spinner from '@/components/ui/spinner'
 
 function Navbar() {
   const scrolled = UseScrollTop(); 
+  
   return (
     <div
     className={cn(
@@ -18,6 +22,8 @@ function Navbar() {
         className='md:ml-auto md:justify-end flex justify-between
         items-center md:w-fit gap-x-2 w-full '
       >
+        <AuthButtons />
+        
         <ModeToggle />
       </div>
       

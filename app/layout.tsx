@@ -1,9 +1,19 @@
 import type { Metadata } from "next";
+
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import { cn } from "@/lib/utils";
 import { Inter } from "next/font/google";
+import { ConvexClientProvider } from "@/components/providers/convex-provider";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
 const inter = Inter({ subsets: ["latin"] });
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,21 +39,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark:bg-[#1f1f1f]" suppressHydrationWarning>
-      <body
-        className={cn( inter.className,"dark:bg-[#1f1f1f]")}
-      >
-        <ThemeProvider
-              attribute="class"
-              enableSystem
-              defaultTheme="system"
-              disableTransitionOnChange
-              storageKey="eisa's-notion-theme"
-            >
- 
-              {children}
-            </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider>
+    <ConvexClientProvider>
+      <html lang="en" className="dark:bg-[#1f1f1f]" suppressHydrationWarning>
+        <body
+          className={cn( inter.className,"dark:bg-[#1f1f1f]")}
+        >
+          <ThemeProvider
+                attribute="class"
+                enableSystem
+                defaultTheme="system"
+                disableTransitionOnChange
+                storageKey="eisa's-notion-theme"
+              >
+   
+                {children}
+              </ThemeProvider>
+        </body>
+      </html>
+    </ConvexClientProvider>
+    </ClerkProvider> 
   );
 }
