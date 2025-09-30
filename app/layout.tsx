@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/page-components/home/navbar";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-
+import { cn } from "@/lib/utils";
+import { Inter } from "next/font/google";
+const inter = Inter({ subsets: ["latin"] });
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,23 +29,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className="dark:bg-[#1f1f1f]" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn( inter.className,"dark:bg-[#1f1f1f]")}
       >
         <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-        <div className="h-full dark:bg[#1f1f1f]">
-          <Navbar />
-          <main className="h-full pt-32">
-            {children}
-          </main>
-        </div>
-        </ThemeProvider>
+              attribute="class"
+              enableSystem
+              defaultTheme="system"
+              disableTransitionOnChange
+              storageKey="eisa's-notion-theme"
+            >
+ 
+              {children}
+            </ThemeProvider>
       </body>
     </html>
   );
