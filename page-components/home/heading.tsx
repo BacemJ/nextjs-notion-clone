@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from "@/components/ui/button"
 import { ArrowRight } from 'lucide-react';
+import { SignOrAct } from '@/components/sign-or-act';
 function Heading() {
   return (
     <div className='max-w-3xl space-y-3'>
@@ -12,10 +13,11 @@ function Heading() {
         The connecting workspace where
         <br/>better, faster work happens
       </h3>
-      <Button >
+      {/*<Button >
        Get Notion free
        <ArrowRight className='w-4 h-4 ml-2'/>
-      </Button>
+      </Button>*/}
+      <SignOrAct />
     </div>
   )
 }
