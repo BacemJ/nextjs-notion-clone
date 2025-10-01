@@ -20,8 +20,10 @@ export default async function ProtectedLayout({
   return <div className="h-full flex dark:bg-[#1f1f1f]">
 
     <ResizablePanelGroup direction="horizontal">
-      <ResizablePanel>
-        <Navigation />
+      <ResizablePanel className="app-left-sidebar">
+        <div className="h-full w-full">
+          <Navigation />
+        </div>
       </ResizablePanel>
       <ResizableHandle withHandle />
       <ResizablePanel>

@@ -112,6 +112,8 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -119,4 +121,28 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* ---------------------------------------------
+   Custom Layout Utilities
+   --------------------------------------------- */
+/* Left sidebar: responsive + clamped width for desktop */
+
+@media (max-width: 767px) {
+  .app-left-sidebar {
+    min-width: 100%;
+  }
+}
+@media (min-width: 768px) {
+  .app-left-sidebar {
+    min-width: 240px;
+    max-width: 480px;
+  }
+}
+/* Optional collapsed modifier */
+.app-left-sidebar--collapsed {
+  width: 0 !important;
+  min-width: 0 !important;
+  max-width: 0 !important;
+  overflow: hidden;
 }
