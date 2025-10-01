@@ -48,11 +48,8 @@
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
+  /* Default collapsed sidebar rail width token */
+  --collapsed-width: 44px;
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
@@ -139,10 +136,24 @@
     max-width: 480px;
   }
 }
-/* Optional collapsed modifier */
-.app-left-sidebar--collapsed {
-  width: 0 !important;
-  min-width: 0 !important;
-  max-width: 0 !important;
+/* Optional collapsed modifier (kept as modifier on the same element) */
+.app-left-sidebar.is-collapsed {
+  width: var(--collapsed-width) !important;
+  min-width: var(--collapsed-width) !important;
+  max-width: var(--collapsed-width) !important;
+  flex: 0 0 var(--collapsed-width) !important; /* override panel inline flex-basis */
   overflow: hidden;
 }
+
+/* Hide the immediate resize handle when collapsed (react-resizable-panels sets data attributes) */
+.app-left-sidebar.is-collapsed + [data-panel-group-direction][data-resize-handle],
+.app-left-sidebar.is-collapsed + [data-resize-handle] {
+  display: none;
+}
+
+.app-left-sidebar {
+  position: relative; /* for absolute-positioned collapse toggle */
+  transition: width 160ms ease, min-width 160ms ease, flex-basis 160ms ease;
+}
+
+

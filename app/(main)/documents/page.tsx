@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { auth, currentUser } from "@clerk/nextjs/server";
 import Image from "next/image";
 import { PlusCircle } from "lucide-react";
+import CollapseButton from "@/components/ui/collapse-button";
 
 export default async function DocumentsPage() {
   const { userId } = await auth();
@@ -16,6 +17,7 @@ export default async function DocumentsPage() {
                      "User";
   return (
     <div className="min-h-[100vh] flex flex-col items-center justify-center space-y-4">
+
       <Image
         src={"/images/empty-white.svg"}
         width={300}

@@ -1,22 +1,31 @@
 'use client'
-import React from 'react'
-import { Button } from './button';
-import { ChevronsLeft } from 'lucide-react';
-function collapseLeftSidebar() {
-  const elements = document.querySelectorAll('.app-left-sidebar');
-  elements.forEach(el => {
-    el.classList.remove('app-left-sidebar');
-    el.classList.add('app-left-sidebar--collapse');
-  });
-}
+import React, { useState, useCallback } from 'react'
+import { Button } from './button'
+import { ChevronsLeft, ChevronsRight } from 'lucide-react'
 
 function CollapseButton() {
+  const [collapsed, setCollapsed] = useState(false)
+
+  const toggle = useCallback(() => {
+    const sidebar = document.querySelector<HTMLElement>('.app-left-sidebar')
+    if (!sidebar) return
+    sidebar.classList.toggle('is-collapsed')
+    setCollapsed(prev => !prev)
+  }, [])
+
   return (
-    <Button  variant="ghost" size="icon" className='ml-auto' onClick={collapseLeftSidebar}>
-        <ChevronsLeft className="" />
-        
+    <Button
+      type="button"
+      aria-label={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+      aria-pressed={collapsed}
+      variant="ghost"
+      size="icon"
+  className={collapsed ? 'absolute top-2 left-2 ml-0' : 'ml-auto'}
+      onClick={toggle}
+    >
+      {collapsed ? <ChevronsRight /> : <ChevronsLeft />}
     </Button>
   )
 }
 
-export default CollapseButton;
+export default CollapseButton
