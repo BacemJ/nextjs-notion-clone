@@ -13,7 +13,7 @@ import {
   SignedIn,
   SignedOut,
   UserButton,
-} from '@clerk/nextjs'
+} from "@clerk/nextjs";
 const inter = Inter({ subsets: ["latin"] });
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,25 +39,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
-    <ConvexClientProvider>
+    <ClerkProvider
+      publishableKey={process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+      appearance={{
+        elements: {
+          rootBox: "!w-full",
+        },
+        variables: { colorPrimary: "#6366f1" },
+      }}
+    >
       <html lang="en" className="dark:bg-[#1f1f1f]" suppressHydrationWarning>
-        <body
-          className={cn( inter.className,"dark:bg-[#1f1f1f]")}
-        >
+        <body className={cn(inter.className, "dark:bg-[#1f1f1f]")}>
           <ThemeProvider
-                attribute="class"
-                enableSystem
-                defaultTheme="system"
-                disableTransitionOnChange
-                storageKey="eisa's-notion-theme"
-              >
-   
-                {children}
-              </ThemeProvider>
+            attribute="class"
+            enableSystem
+            defaultTheme="system"
+            disableTransitionOnChange
+            storageKey="eisa's-notion-theme"
+          >
+            <ConvexClientProvider>{children}</ConvexClientProvider>
+          </ThemeProvider>
         </body>
       </html>
-    </ConvexClientProvider>
-    </ClerkProvider> 
+    </ClerkProvider>
   );
 }
