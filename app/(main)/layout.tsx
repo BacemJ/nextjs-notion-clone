@@ -6,6 +6,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable"
+import SearchCommand from "@/page-components/documents/search-command";
 export default async function ProtectedLayout({
   children,
 }: {
@@ -27,6 +28,7 @@ export default async function ProtectedLayout({
       </ResizablePanel>
       <ResizableHandle withHandle />
       <ResizablePanel>
+        <SearchCommand />
         <main className="flex-1 h-full overflow-y-auto">
           {children}
         </main>

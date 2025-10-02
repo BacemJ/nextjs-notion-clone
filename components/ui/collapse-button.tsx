@@ -3,7 +3,9 @@ import React, { useState, useCallback } from 'react'
 import { Button } from './button'
 import { ChevronsLeft, ChevronsRight } from 'lucide-react'
 
-function CollapseButton() {
+function CollapseButton(
+  { className }: { className?: string }
+) {
   const [collapsed, setCollapsed] = useState(false)
 
   const toggle = useCallback(() => {
@@ -12,7 +14,7 @@ function CollapseButton() {
     sidebar.classList.toggle('is-collapsed')
     setCollapsed(prev => !prev)
   }, [])
-
+/*className={collapsed ? 'absolute top-2 left-2 ml-0' : 'ml-auto'}*/
   return (
     <Button
       type="button"
@@ -20,7 +22,7 @@ function CollapseButton() {
       aria-pressed={collapsed}
       variant="ghost"
       size="icon"
-  className={collapsed ? 'absolute top-2 left-2 ml-0' : 'ml-auto'}
+      className={className}
       onClick={toggle}
     >
       {collapsed ? <ChevronsRight /> : <ChevronsLeft />}
