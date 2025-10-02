@@ -14,6 +14,7 @@ import {
   SignedOut,
   UserButton,
 } from "@clerk/nextjs";
+import { Toaster } from "@/components/ui/sonner";
 const inter = Inter({ subsets: ["latin"] });
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -59,6 +60,7 @@ export default function RootLayout({
           >
             <ConvexClientProvider>{children}</ConvexClientProvider>
           </ThemeProvider>
+          <Toaster position="bottom-right" />
         </body>
       </html>
     </ClerkProvider>
